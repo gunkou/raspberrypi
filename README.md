@@ -92,7 +92,7 @@ piユーザー内のファイルを、追加ユーザーにコピー
 $ sudo cp -r /home/pi/* /home/{{ newuser }}
 ```
 
-### piユーザーのオートログインを無効化
+### piユーザーのオートログインを無効化して追加ユーザーに変更する
 
 `autologin-user=pi`をコメントアウトする
 
@@ -122,8 +122,6 @@ ExecStart=-/sbin/agetty --autologin pi --noclear %I 38400 linux
 ExecStart=-/sbin/agetty --autologin {{ newuser }} --noclear %I 38400 linux
 ```
 
-
-
 再起動
 
 ```
@@ -134,4 +132,47 @@ piユーザーが消えていたらOK
 
 ```
 $ who
+```
+
+### piユーザーの削除
+
+```
+$ sudo userdel -r pi
+```
+
+確認
+
+```
+$ id -a pi
+```
+
+### SSH のポートを変更する
+
+```
+$ sudo vim /etc/ssh/sshd_config
+```
+
+```
+Port XXXXX # 49152〜65535の中から好きに選ぶ
+```
+
+SSHを再起動
+
+```
+$ sudo /etc/init.d/ssh restart
+```
+
+`[OK]`が表示されたらログアウトしてポート番号を指定してSSH接続できるか確認
+
+
+### rootユーザーで直接ログイン出来なくする
+
+```
+$ sudo vim /etc/ssh/sshd_config
+```
+
+以下のコメントアウトを削除してrootログインにおいて、すべてのインタラクティブな認証を禁止し、公開鍵もしくはホストベース、GSSAPIによる認証のみが有効にする
+
+```
+#PermitRootLogin prohibit-password
 ```
