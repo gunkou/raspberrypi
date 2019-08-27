@@ -94,10 +94,13 @@ $ sudo cp -r /home/pi/* /home/{{ newuser }}
 
 ### piユーザーのオートログインを無効化して追加ユーザーに変更する
 
-`autologin-user=pi`をコメントアウトする
-
 ```
 $ sudo vim /etc/lightdm/lightdm.conf
+```
+
+以下をコメントアウトする
+```
+autologin-user=pi
 ```
 
 新しいユーザー名に書き換える
