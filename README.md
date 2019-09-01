@@ -179,3 +179,9 @@ $ sudo vim /etc/ssh/sshd_config
 ```
 #PermitRootLogin prohibit-password
 ```
+
+## ローカルIP固定設定
+
+> LANにおいて、Routerの設定によってはLANに属するコンピューターに動的にローカルIPが割り振られています。
+> SSH接続はこのローカルIPを利用しているので、動的にローカルIPが変更されては接続できなくなってしまいます。
+> なので、安定してRaspberry PiにSSH接続するためには固定的にローカルIPを設定する必要があります。
