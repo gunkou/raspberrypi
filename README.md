@@ -188,21 +188,4 @@ $ sudo vim /etc/ssh/sshd_config
 
 `man dhcpcd.conf` を実行して、`static value` のマニュアルにexampleがあるのでそのまま拝借します。
 
-```
-$ sudo vim /etc/dhcpcd.conf
-```
 
-有線 LAN 接続の固定するために以下を記述（*: 適当な数値に置き換える)
-
-```
-interface eth0
-static ip_address=192.168.**.**/24
-static routers=192.168.**.1
-static domain_name_servers=192.168.**.1
-```
-
-再起動
-
-```
-sudo reboot
-```
